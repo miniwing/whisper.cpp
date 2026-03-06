@@ -27,11 +27,9 @@ Pod::Spec.new do |s|
   
   s.pod_target_xcconfig = {
     "GCC_PREPROCESSOR_DEFINITIONS" => "GGML_USE_K_QUANTS=1",
-    "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
+    "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
+    "OTHER_CFLAGS" => "-O3 -ffast-math"
   }
-  
-  # ARM NEON optimization for iOS
-  s.pod_target_xcconfig['OTHER_CFLAGS'] = '-O3 -ffast-math'
   
   s.libraries = "c++"
 end
