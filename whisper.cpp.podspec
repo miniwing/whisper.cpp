@@ -14,20 +14,17 @@ Pod::Spec.new do |s|
     "src/whisper.cpp",
     "ggml/src/ggml.c",
     "ggml/src/ggml-alloc.c",
+    "ggml/src/ggml-quants.c",
     "ggml/src/ggml-backend-reg.cpp"
   
   s.public_header_files = "include/whisper.h"
-  s.header_mappings_dir = "include"
   
-  s.xcconfig = {
-    "GCC_PREPROCESSOR_DEFINITIONS" => "GGML_USE_K_QUANTS=1",
-    "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
-    "CLANG_CXX_LIBRARY" => "libc++"
-  }
+  s.header_dir = "whisper"
   
   s.pod_target_xcconfig = {
     "GCC_PREPROCESSOR_DEFINITIONS" => "GGML_USE_K_QUANTS=1",
     "CLANG_CXX_LANGUAGE_STANDARD" => "c++17",
+    "HEADER_SEARCH_PATHS" => "$(inherited) ${PODS_TARGET_SRCROOT}/include ${PODS_TARGET_SRCROOT}/ggml/include",
     "OTHER_CFLAGS" => "-O3 -ffast-math"
   }
   
