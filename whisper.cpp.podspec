@@ -53,8 +53,8 @@ Pod::Spec.new do |s|
     'GCC_PREPROCESSOR_DEFINITIONS' => [
       'GGML_USE_K_QUANTS=1',
       'GGML_USE_ACCELERATE=1',
-      'GGML_VERSION="0.9.4"',
-      'GGML_COMMIT="whisper.cpp-pod"'
+      'GGML_VERSION=\"0.9.4\"',
+      'GGML_COMMIT=\"whisper.cpp-pod\"'
     ].join(" "),
     'HEADER_SEARCH_PATHS' => [
       "$(inherited)",
