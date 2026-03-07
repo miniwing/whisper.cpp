@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
   # 源文件
   s.source_files = 
     # whisper.cpp 主文件
+    "include/whisper.h",
     "src/whisper.cpp",
-    "src/whisper.h",
     
     # ggml 核心文件
     "ggml/src/ggml.c",
@@ -29,7 +29,25 @@ Pod::Spec.new do |s|
     "ggml/src/ggml-backend.cpp",
     "ggml/src/ggml-opt.cpp",
     "ggml/src/ggml-common.h",
-    
+
+    "ggml/include/ggml-alloc.h",
+    "ggml/include/ggml-backend.h",
+    "ggml/include/ggml-blas.h",
+    "ggml/include/ggml-cann.h",
+    "ggml/include/ggml-cpp.h",
+    "ggml/include/ggml-cpu.h",
+    "ggml/include/ggml-cuda.h",
+    "ggml/include/ggml-metal.h",
+    "ggml/include/ggml-opencl.h",
+    "ggml/include/ggml-opt.h",
+    "ggml/include/ggml-rpc.h",
+    "ggml/include/ggml-sycl.h",
+    "ggml/include/ggml-vulkan.h",
+    "ggml/include/ggml-webgpu.h",
+    "ggml/include/ggml-zdnn.h",
+    "ggml/include/ggml.h",
+    "ggml/include/gguf.h",
+
     # ggml-cpu 完整文件列表 (来自 CMakeLists.txt)
     "ggml/src/ggml-cpu/ggml-cpu.c",
     "ggml/src/ggml-cpu/ggml-cpu.cpp",
