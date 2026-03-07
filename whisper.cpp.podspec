@@ -9,11 +9,11 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/ggml-org/whisper.cpp.git", :tag => "v#{s.version}" }
   
   # 平台配置
-  s.ios.deployment_target = ENV['ios.deployment_target'] || "12.0"
-  s.osx.deployment_target = ENV['osx.deployment_target'] || "10.15"
-  s.watchos.deployment_target = ENV['watchos.deployment_target'] || "6.0"
-  s.tvos.deployment_target = ENV['tvos.deployment_target'] || "13.0"
-  
+  s.ios.deployment_target       = ENV['ios.deployment_target']
+  s.watchos.deployment_target   = ENV['watchos.deployment_target']
+  s.tvos.deployment_target      = ENV['tvos.deployment_target']
+  s.osx.deployment_target       = ENV['osx.deployment_target']
+
   # 源文件
   s.source_files = 
     "src/whisper.cpp",
