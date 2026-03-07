@@ -16,19 +16,43 @@ Pod::Spec.new do |s|
 
   # 源文件
   s.source_files = 
+    # whisper.cpp 主文件
     "src/whisper.cpp",
     "src/whisper.h",
+    
+    # ggml 核心文件
     "ggml/src/ggml.c",
     "ggml/src/ggml-alloc.c",
     "ggml/src/ggml-quants.c",
     "ggml/src/ggml-backend-reg.cpp",
     "ggml/src/ggml-backend.cpp",
     "ggml/src/ggml-opt.cpp",
+    "ggml/src/ggml-common.h",
+    
+    # ggml-cpu 完整文件列表 (来自 CMakeLists.txt)
     "ggml/src/ggml-cpu/ggml-cpu.c",
     "ggml/src/ggml-cpu/ggml-cpu.cpp",
+    "ggml/src/ggml-cpu/repack.cpp",
+    "ggml/src/ggml-cpu/hbm.cpp",
+    "ggml/src/ggml-cpu/quants.c",
+    "ggml/src/ggml-cpu/traits.cpp",
+    "ggml/src/ggml-cpu/binary-ops.cpp",
+    "ggml/src/ggml-cpu/unary-ops.cpp",
+    "ggml/src/ggml-cpu/vec.cpp",
     "ggml/src/ggml-cpu/ops.cpp",
+    
+    # 头文件 (编译需要)
     "ggml/src/ggml-cpu/ggml-cpu-impl.h",
-    "ggml/src/ggml-common.h"
+    "ggml/src/ggml-cpu/common.h",
+    "ggml/src/ggml-cpu/repack.h",
+    "ggml/src/ggml-cpu/hbm.h",
+    "ggml/src/ggml-cpu/quants.h",
+    "ggml/src/ggml-cpu/traits.h",
+    "ggml/src/ggml-cpu/binary-ops.h",
+    "ggml/src/ggml-cpu/unary-ops.h",
+    "ggml/src/ggml-cpu/simd-mappings.h",
+    "ggml/src/ggml-cpu/vec.h",
+    "ggml/src/ggml-cpu/ops.h"
   
   s.public_header_files = [
     "include/whisper.h",
