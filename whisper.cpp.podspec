@@ -50,6 +50,7 @@ Pod::Spec.new do |s|
     "ggml/src/ggml-metal/ggml-metal-device.m",
     "ggml/src/ggml-metal/ggml-metal-context.m",
     "ggml/src/ggml-metal/ggml-metal-ops.cpp",
+    "ggml/src/ggml-metal/ggml-metal.metal",
     
     # ggml-blas (BLAS 加速，参考 GGML_BLAS_DEFAULT=ON)
     "ggml/src/ggml-blas/ggml-blas.cpp",
@@ -121,6 +122,7 @@ Pod::Spec.new do |s|
       "${PODS_TARGET_SRCROOT}/include",
       "${PODS_TARGET_SRCROOT}/ggml/include",
       "${PODS_TARGET_SRCROOT}/ggml/src",
+      "${PODS_TARGET_SRCROOT}/ggml/src/ggml-metal",
       "${PODS_ROOT}/whisper.cpp/ggml/src"
     ].join(" "),
     # 参考 COMMON_C_FLAGS
@@ -147,7 +149,8 @@ Pod::Spec.new do |s|
       "$(inherited)",
       "${PODS_TARGET_SRCROOT}/include",
       "${PODS_TARGET_SRCROOT}/ggml/include",
-      "${PODS_TARGET_SRCROOT}/ggml/src"
+      "${PODS_TARGET_SRCROOT}/ggml/src",
+      "${PODS_TARGET_SRCROOT}/ggml/src/ggml-metal"
     ].join(" "),
     'OTHER_CFLAGS' => '-O3 -Wno-macro-redefined -Wno-shorten-64-to-32 -Wno-unused-command-line-argument -g',
     'OTHER_CPLUSPLUSFLAGS' => '-O3 -std=c++17 -Wno-macro-redefined -Wno-shorten-64-to-32 -Wno-unused-command-line-argument -g'
