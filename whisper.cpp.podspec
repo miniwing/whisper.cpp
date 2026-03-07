@@ -64,8 +64,8 @@ Pod::Spec.new do |s|
       "${PODS_TARGET_SRCROOT}/ggml/src",
       "${PODS_ROOT}/whisper.cpp/ggml/src"
     ].join(" "),
-    'OTHER_CFLAGS' => '-O3 -ffast-math',
-    'OTHER_CPLUSPLUSFLAGS' => '-O3 -ffast-math -std=c++17'
+    'OTHER_CFLAGS' => '-O3',
+    'OTHER_CPLUSPLUSFLAGS' => '-O3 -std=c++17'
   }
   
   s.osx.pod_target_xcconfig = {
