@@ -26,6 +26,7 @@ Pod::Spec.new do |s|
     "ggml/src/ggml-opt.cpp",
     "ggml/src/ggml-cpu/ggml-cpu.c",
     "ggml/src/ggml-cpu/ggml-cpu.cpp",
+    "ggml/src/ggml-cpu/ops.cpp",
     "ggml/src/ggml-cpu/ggml-cpu-impl.h",
     "ggml/src/ggml-common.h"
   
