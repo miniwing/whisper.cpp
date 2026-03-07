@@ -1,109 +1,51 @@
-Pod::Spec.new do |s|
-  s.name         = "whisper.cpp"
-  s.version      = "1.8.1"
-  s.summary      = "Port of OpenAI's Whisper model in C/C++"
-  s.description  = "High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model in pure C/C++"
-  s.homepage     = "https://github.com/ggml-org/whisper.cpp"
-  s.license      = { :type => "MIT", :file => "LICENSE" }
-  s.author       = { "Georgi Gerganov" => "ggerganov@gmail.com" }
-  s.source       = { :git => "https://github.com/ggml-org/whisper.cpp.git", :tag => "v#{s.version}" }
-  
+Pod::Spec.new do |spec|
+  spec.name         = "whisper.cpp"
+  spec.version      = "1.8.1"
+  spec.summary      = "Port of OpenAI's Whisper model in C/C++"
+  spec.description  = "High-performance inference of OpenAI's Whisper automatic speech recognition (ASR) model in pure C/C++"
+  spec.homepage     = "https://github.com/ggml-org/whisper.cpp"
+  spec.license      = { :type => "MIT", :file => "LICENSE" }
+  spec.author       = { "Georgi Gerganov" => "ggerganov@gmail.com" }
+  spec.source       = { :git => "https://github.com/ggml-org/whisper.cpp.git", :tag => "v#{spec.version}" }
+  spec.source       = { :path => "." }
+
   # 平台配置 (参考 build-xcframework.sh)
-  s.ios.deployment_target       = ENV['ios.deployment_target'] || '16.4'
-  s.watchos.deployment_target   = ENV['watchos.deployment_target'] || '6.0'
-  s.tvos.deployment_target      = ENV['tvos.deployment_target'] || '16.4'
-  s.osx.deployment_target       = ENV['osx.deployment_target'] || '13.3'
-  s.visionos.deployment_target  = ENV['visionos.deployment_target'] || '1.0'
+  spec.ios.deployment_target       = ENV['ios.deployment_target']       || '16.4'
+  spec.watchos.deployment_target   = ENV['watchos.deployment_target']   || '6.0'
+  spec.tvos.deployment_target      = ENV['tvos.deployment_target']      || '16.4'
+  spec.osx.deployment_target       = ENV['osx.deployment_target']       || '13.3'
+  spec.visionos.deployment_target  = ENV['visionos.deployment_target']  || '1.0'
 
   # 源文件 (参考 build-xcframework.sh 中的静态库列表)
-  s.source_files = 
-    # whisper.cpp 主文件
-    "src/whisper.cpp",
-    "src/whisper.h",
-    
-    # ggml 核心文件
-    "ggml/src/ggml.c",
-    "ggml/src/ggml-alloc.c",
-    "ggml/src/ggml-quants.c",
-    "ggml/src/ggml-threading.cpp",
-    "ggml/src/ggml-backend-reg.cpp",
-    "ggml/src/ggml-backend.cpp",
-    "ggml/src/ggml-opt.cpp",
-    "ggml/src/ggml-common.h",
-    
-    # ggml-cpu 完整文件列表
-    "ggml/src/ggml-cpu/ggml-cpu.c",
-    "ggml/src/ggml-cpu/ggml-cpu.cpp",
-    "ggml/src/ggml-cpu/repack.cpp",
-    "ggml/src/ggml-cpu/hbm.cpp",
-    "ggml/src/ggml-cpu/quants.c",
-    "ggml/src/ggml-cpu/traits.cpp",
-    "ggml/src/ggml-cpu/binary-ops.cpp",
-    "ggml/src/ggml-cpu/unary-ops.cpp",
-    "ggml/src/ggml-cpu/vec.cpp",
-    "ggml/src/ggml-cpu/ops.cpp",
-    
-    # ggml-metal (GPU 加速，参考 GGML_METAL=ON)
-    "ggml/src/ggml-metal/ggml-metal.cpp",
-    "ggml/src/ggml-metal/ggml-metal-common.cpp",
-    "ggml/src/ggml-metal/ggml-metal-device.cpp",
-    "ggml/src/ggml-metal/ggml-metal-device.m",
-    "ggml/src/ggml-metal/ggml-metal-context.m",
-    "ggml/src/ggml-metal/ggml-metal-ops.cpp",
-    "ggml/src/ggml-metal/ggml-metal.metal",
-    
-    # ggml-blas (BLAS 加速，参考 GGML_BLAS_DEFAULT=ON)
-    "ggml/src/ggml-blas/ggml-blas.cpp",
-    
-    # 头文件 (编译需要)
-    "ggml/src/ggml-cpu/ggml-cpu-impl.h",
-    "ggml/src/ggml-cpu/common.h",
-    "ggml/src/ggml-cpu/repack.h",
-    "ggml/src/ggml-cpu/hbm.h",
-    "ggml/src/ggml-cpu/quants.h",
-    "ggml/src/ggml-cpu/traits.h",
-    "ggml/src/ggml-cpu/binary-ops.h",
-    "ggml/src/ggml-cpu/unary-ops.h",
-    "ggml/src/ggml-cpu/simd-mappings.h",
-    "ggml/src/ggml-cpu/vec.h",
-    "ggml/src/ggml-cpu/ops.h",
-    "ggml/src/ggml-metal/ggml-metal-impl.h",
-    "ggml/src/ggml-metal/ggml-metal-common.h",
-    "ggml/src/ggml-metal/ggml-metal-context.h",
-    "ggml/src/ggml-metal/ggml-metal-device.h",
-    "ggml/src/ggml-metal/ggml-metal-ops.h"
-  
+  spec.source_files         = 'include/**/*.h',
+                              'src/**.{h,m,mm,cpp,cxx}',
+                              'ggml/**.{h,m,mm,cpp,cxx}'
+
+
   # 公共头文件 (参考 setup_framework_structure 函数)
-  s.public_header_files = [
-    "include/whisper.h",
-    "ggml/include/ggml.h",
-    "ggml/include/ggml-alloc.h",
-    "ggml/include/ggml-backend.h",
-    "ggml/include/ggml-metal.h",
-    "ggml/include/ggml-cpu.h",
-    "ggml/include/ggml-blas.h",
-    "ggml/include/gguf.h"
-  ]
+  spec.public_header_files  = "include/*.{h,hpp}",
+                              "ggml/*.{h,hpp}"
+  
   
   # 资源文件 (Metal shader)
-  s.resource_bundles = {
-    'whisper' => ['ggml/src/ggml-metal/ggml-metal.metal']
-  }
+  spec.resource_bundles     = {
+                                'whisper' => ['ggml/src/ggml-metal/ggml-metal.metal']
+                              }
   
   # 系统框架 (参考 combine_static_libraries 函数)
-  s.frameworks = ['Foundation', 'Accelerate', 'Metal']
-  s.ios.frameworks = ['UIKit', 'CoreGraphics', 'QuartzCore', 'CoreFoundation', 'CoreML']
-  s.osx.frameworks = ['CoreML']
+  spec.frameworks = ['Foundation', 'Accelerate', 'Metal']
+  spec.ios.frameworks = ['UIKit', 'CoreGraphics', 'QuartzCore', 'CoreFoundation', 'CoreML']
+  spec.osx.frameworks = ['CoreML']
   
   # xcconfig 配置 (参考 COMMON_CMAKE_ARGS)
-  s.ios.pod_target_xcconfig = {
-    'PRODUCT_BUNDLE_IDENTIFIER' => 'com.whisper.cpp',
-    'ENABLE_BITCODE' => 'NO',
-    'SWIFT_VERSION' => ENV['SWIFT_VERSION'] || '5.0',
-    'EMBEDDED_CONTENT_CONTAINS_SWIFT' => 'NO',
-    'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES' => 'NO',
-    'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
-    'CLANG_CXX_LANGUAGE_STANDARD' => 'c++17',
+  spec.ios.pod_target_xcconfig = {
+                                  'PRODUCT_BUNDLE_IDENTIFIER' => 'com.whisper.cpp',
+                                  'ENABLE_BITCODE' => 'NO',
+                                  'SWIFT_VERSION' => ENV['SWIFT_VERSION'] || '5.0',
+                                  'EMBEDDED_CONTENT_CONTAINS_SWIFT' => 'NO',
+                                  'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES' => 'NO',
+                                  'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
+                                  'CLANG_CXX_LANGUAGE_STANDARD' => 'c++17',
     'GCC_PREPROCESSOR_DEFINITIONS' => [
       'GGML_USE_K_QUANTS=1',
       'GGML_USE_ACCELERATE=1',
@@ -119,6 +61,8 @@ Pod::Spec.new do |s|
     ].join(" "),
     'HEADER_SEARCH_PATHS' => [
       "$(inherited)",
+      "${PODS_TARGET_SRCROOT}/",
+      "${PODS_TARGET_SRCROOT}/../",
       "${PODS_TARGET_SRCROOT}/include",
       "${PODS_TARGET_SRCROOT}/ggml/include",
       "${PODS_TARGET_SRCROOT}/ggml/src",
@@ -130,7 +74,7 @@ Pod::Spec.new do |s|
     'OTHER_CPLUSPLUSFLAGS' => '-O3 -std=c++17 -Wno-macro-redefined -Wno-shorten-64-to-32 -Wno-unused-command-line-argument -g'
   }
   
-  s.osx.pod_target_xcconfig = {
+  spec.osx.pod_target_xcconfig = {
     'PRODUCT_BUNDLE_IDENTIFIER' => 'com.whisper.cpp.mac',
     'CLANG_CXX_LANGUAGE_STANDARD' => 'c++17',
     'GCC_PREPROCESSOR_DEFINITIONS' => [
@@ -158,6 +102,7 @@ Pod::Spec.new do |s|
   
   # 预编译头文件 (PCH)
   pch_content = <<-EOS
+  
 #ifdef __OBJC__
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
@@ -219,8 +164,8 @@ extern "C" {
 #endif
 EOS
 
-  s.prefix_header_contents = pch_content
+  spec.prefix_header_contents = pch_content
   
   # 库依赖
-  s.libraries = "c++"
+  spec.libraries = "c++"
 end
