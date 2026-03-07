@@ -62,8 +62,6 @@ Pod::Spec.new do |s|
     "ggml/include/ggml-backend.h"
   ]
   
-  s.header_dir = "whisper"
-  
   # 系统框架
   s.frameworks = ['Foundation', 'UIKit', 'CoreGraphics', 'QuartzCore', 'CoreFoundation', 'Accelerate', 'Metal']
   
